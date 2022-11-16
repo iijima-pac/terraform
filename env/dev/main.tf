@@ -23,14 +23,10 @@ terraform {
 provider "azurerm" {
   features {}
 }
-
-resource azurerm_resource_group rg {
-  rg_name   = var.resource_group_name
-  location = var.location
-}
 module "resourcegroup" {
   source = "../../modules/resourcegroup"
   location = var.location
+  rg_name   = var.resource_group_name
 }
 module "vnet" {
   source = "../../modules/vnet"

@@ -27,6 +27,5 @@ resource azurerm_virtual_network vnet {
   
   tags = {
     Environment = "Terraform Getting Started"
-    Team = "DevOps"
   }
 }

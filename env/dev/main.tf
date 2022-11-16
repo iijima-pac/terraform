@@ -32,4 +32,5 @@ module "vnet" {
   source = "../../modules/vnet"
   subnet_name = "myTFVnet"
   rg_name = azurerm_resource_group.rg.name
+  location = var.location
 }

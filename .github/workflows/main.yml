@@ -40,8 +40,8 @@ jobs:
       id: plan
       run: terraform plan
       continue-on-error: true
-    - name: Terraform Plan Status
-      if: steps.plan.outcome == 'failure'
+    - name: Notify Terraform Plan Fail
+      if: ${{steps.plan.outcome == 'failure'}}
       run: exit 1
     - name: Terraform Apply
       if: ${{ github.ref_name == 'main' && github.event_name == 'push'}}

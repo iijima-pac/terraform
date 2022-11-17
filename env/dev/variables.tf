@@ -1,6 +1,6 @@
 variable "resource_group_name" {
   default = "myTFResourceGroup"
 }
-variable location {
+variable "location" {
   default = "japaneast"
 }

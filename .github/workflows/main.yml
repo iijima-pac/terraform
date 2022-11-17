@@ -30,15 +30,14 @@ jobs:
       uses: hashicorp/setup-terraform@v2.0.3
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-#    - name: Terraform Format
-#      id: fmt
-#      run: terraform fmt -check -recursive
+    - name: Terraform Format
+      id: fmt
+      run: terraform fmt -check -recursive
     - name: Terraform Init
       id: init
       run: terraform init
     - name: Terraform Plan
       id: plan
-      if: ${{ github.event_name == 'pull_request'}}
       run: terraform plan
       continue-on-error: true
     - name: Terraform Plan Status

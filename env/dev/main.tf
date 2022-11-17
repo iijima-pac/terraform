@@ -34,14 +34,3 @@ module "vnet" {
   rg_name     = module.resourcegroup.name
   location    = var.location
 }
-
-resource "azurerm_public_ip" "pip" {
-  name                = "acceptanceTestPublicIp1"
-  resource_group_name = module.resourcegroup.name
-  location            = var.location
-  allocation_method   = "Static"
-
-  tags = {
-    environment = "Production"
-  }
-}

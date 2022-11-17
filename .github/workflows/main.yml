@@ -30,20 +30,19 @@ jobs:
       uses: hashicorp/setup-terraform@v2.0.3
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-#    - name: Terraform Format
-#      id: fmt
-#      run: terraform fmt -check -recursive
+    - name: Terraform Format
+      id: fmt
+      run: terraform fmt -check -recursive
     - name: Terraform Init
       id: init
       run: terraform init
     - name: Terraform Plan
       id: plan
-      if: ${{ github.event_name == 'pull_request'}}
       run: terraform plan
       continue-on-error: true
-    - name: Terraform Plan Status
-      if: steps.plan.outcome == 'failure'
+    - name: Notify On Fail
+      if: ${{steps.plan.outcome == 'failure'}}
       run: exit 1
     - name: Terraform Apply
-      if: ${{ github.ref_name == 'main' && github.event_name == 'push'}}
+      if: ${{ github.event_name == 'push'}}
       run: terraform apply -auto-approve
